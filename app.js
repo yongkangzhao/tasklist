@@ -9,7 +9,11 @@ const taskInput = document.querySelector('#task');
 loadEventListeners();
 
 function loadEventListeners(){
+    // add task
     form.addEventListener('submit', addTask);
+    // remove task
+    taskList.addEventListener('click', removeTask);
+    clearBtn.addEventListener('click', clearTasks);
 }
 
 
@@ -17,7 +21,6 @@ function addTask(e){
     if(taskInput.value ===''){
         alert('Add a task');
     }
-
     // create li element
     const li = document.createElement('li');
     // add class
@@ -36,9 +39,17 @@ function addTask(e){
     taskList.appendChild(li);
 
     taskInput.value='';
-    console.log(li);
-
-
-
     e.preventDefault();
+}
+
+function removeTask(e){
+    if (e.target.className==="fa fa-remove"){
+        e.target.parentNode.parentNode.remove();
+    }
+    e.preventDefault();
+}
+
+
+function clearTasks(e){
+    taskList.innerHTML = '';
 }
